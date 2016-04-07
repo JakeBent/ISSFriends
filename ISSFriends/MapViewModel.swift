@@ -27,7 +27,7 @@ class MapViewModel: NSObject {
     }
 
     func requestMyNextPassTime(location: CLLocationCoordinate2D) {
-        networkService.getPassTimes(lat: location.latitude, long: location.longitude, count: 1) { [weak self] (response) -> Void in
+        networkService.getPassTimes(lat: location.latitude, lon: location.longitude, count: 1) { [weak self] (response) -> Void in
             guard let
                 value = response.result.value as? [String: AnyObject],
                 result = value["response"] as? [[String: NSTimeInterval]]

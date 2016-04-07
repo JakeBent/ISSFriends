@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Alamofire
 import MapKit
+import Bond
 
 // This is a table view cell displayed in the FriendsListViewController. It shows the name when collapsed and shows the name plus the next 3 pass times when expanded
 class FriendInfoTableViewCell: UITableViewCell {
@@ -38,7 +39,21 @@ class FriendInfoTableViewCell: UITableViewCell {
         return view
     }()
     weak var tableView: UITableView?
-    var viewModel: FriendInfoViewModel?
+    var friendObserver: DisposableType?
+    var isExpandedObserver: DisposableType?
+    var viewModel: FriendInfoViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            friendObserver?.dispose()
+            friendObserver = viewModel.friend.observe { [weak self] friend in
+                self?.titleLabel.text = friend.name
+            }
+            isExpandedObserver?.dispose()
+            isExpandedObserver = viewModel.isExpanded.observeNew { [weak self] value in
+                value ? self?.expandCell() : self?.collapseCell()
+            }
+        }
+    }
     var expandedView: FriendInfoExpandedView?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -79,78 +94,77 @@ class FriendInfoTableViewCell: UITableViewCell {
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
-        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toggleCellExpansion"))
-        expandArrow.addTarget(self, action: "toggleCellExpansion", forControlEvents: .TouchUpInside)
     }
 
-    // When a cell/arrow is tapped either expand or collapse the cell
     func toggleCellExpansion() {
-        guard let viewModel = viewModel else { return }
-        viewModel.isExpanded ? collapseCell(animated: true) : expandCell(viewModel.friend.coordinate)
-        viewModel.isExpanded = !viewModel.isExpanded
+        viewModel?.toggle()
     }
 
     // Hide expanded view with pass times
-    func collapseCell(animated animated: Bool = false) {
-        guard let tableView = tableView else { return }
-
-        tableView.beginUpdates()
+    func collapseCell(animated animated: Bool = true) {
         if animated {
+            tableView?.beginUpdates()
             UIView.animateWithDuration(0.2, animations: { [weak self] () in
                 self?.expandArrow.transform = CGAffineTransformMakeRotation(0)
             }) { [weak self] (_) in
-                self?.expandedView?.removeFromSuperview()
-                tableView.endUpdates()
+                self?.tableView?.endUpdates()
             }
         } else {
-            expandArrow.transform = CGAffineTransformMakeRotation(0)
-            expandedView?.removeFromSuperview()
-            tableView.endUpdates()
+            self.expandArrow.transform = CGAffineTransformMakeRotation(0)
         }
     }
 
     // Call out to open-notify to retrieve pass times, then expand the cell when the data is returned
-    func expandCell(coordinate: CLLocationCoordinate2D) {
-        guard let tableView = tableView else { return }
+    func expandCell(animated animated: Bool = true) {
+        if animated {
+            spinner.startAnimating()
+            viewModel?.requestPassTimes { [weak self] (times) in
+                self?.spinner.stopAnimating()
 
-        spinner.startAnimating()
-        NetworkService.sharedService.getPassTimes(lat: coordinate.latitude, long: coordinate.longitude) { [weak self] (response) -> Void in
+                guard let
+                    times = times,
+                    sself = self
+                    else { return }
 
-            self?.spinner.stopAnimating()
-
-            guard let
-                sself = self,
-                value = response.result.value as? [String: AnyObject],
-                result = value["response"] as? [[String: NSTimeInterval]]
-                else { return }
-
-            let times = result.flatMap({ (timeDict) -> String in
-                guard let interval = timeDict["risetime"] else { return "" }
-                return Utility.stringFromTimeInterval(interval)
-            })
-
-            tableView.beginUpdates()
-            self?.expandedView = FriendInfoExpandedView(passTimes: times)
-            self?.expandedView?.layoutViews()
-            self?.contentView.insertSubview(sself.expandedView!, atIndex: 1)
-            self?.expandedView?.snp_remakeConstraints { (make) -> Void in
-                make.left.equalTo(sself.contentView.snp_left)
-                make.right.equalTo(sself.contentView.snp_right)
-                make.top.equalTo(sself.background.snp_bottom)
-                make.bottom.equalTo(sself.contentView.snp_bottom)
+                self?.tableView?.beginUpdates()
+                if self?.expandedView != nil {
+                    self?.expandedView?.removeFromSuperview()
+                }
+                self?.expandedView = FriendInfoExpandedView(passTimes: times)
+                self?.expandedView?.layoutViews()
+                self?.contentView.insertSubview(sself.expandedView!, atIndex: 1)
+                self?.expandedView?.snp_remakeConstraints { (make) -> Void in
+                    make.left.equalTo(sself.contentView.snp_left)
+                    make.right.equalTo(sself.contentView.snp_right)
+                    make.top.equalTo(sself.background.snp_bottom)
+                    make.bottom.equalTo(sself.contentView.snp_bottom)
+                }
+                UIView.animateWithDuration(0.2, animations: { [weak self] () in
+                    self?.expandArrow.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+                })
+                self?.tableView?.endUpdates()
             }
-            UIView.animateWithDuration(0.2, animations: { [weak self] () in
-                self?.expandArrow.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
-            })
-            tableView.endUpdates()
+        } else {
+            guard let expandedView = expandedView else { viewModel?.toggle(); return }
+            self.contentView.insertSubview(expandedView, atIndex: 1)
+            self.expandedView?.snp_remakeConstraints { (make) -> Void in
+                make.left.equalTo(contentView.snp_left)
+                make.right.equalTo(contentView.snp_right)
+                make.top.equalTo(background.snp_bottom)
+                make.bottom.equalTo(contentView.snp_bottom)
+            }
+            expandArrow.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
         }
     }
 
-    // Called for every instance of this cell for initial setup and reuse
+    // Deal with reuse issues
     func configure(viewModel: FriendInfoViewModel) {
         self.viewModel = viewModel
-        viewModel.isExpanded ? expandCell(viewModel.friend.coordinate) : collapseCell()
-        titleLabel.text = viewModel.friend.name
+        expandArrow.bnd_bag.dispose()
+        expandArrow.bnd_tap.observeNew { [weak self] () in
+            self?.toggleCellExpansion()
+        }
+        viewModel.isExpanded.value ? self.expandCell(animated: false) : self.collapseCell(animated: false)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -19,10 +19,10 @@ class NetworkService: NSObject {
             .responseJSON(completionHandler: completion)
     }
 
-    func getPassTimes(lat lat: Double, long: Double, count: Int = 3, completion: (Response<AnyObject, NSError>) -> Void) {
+    func getPassTimes(lat lat: Double, lon: Double, count: Int = 3, completion: (Response<AnyObject, NSError>) -> Void) {
         let params: [String: AnyObject] = [
             "lat": lat,
-            "lon": long,
+            "lon": lon,
             "n": count
         ]
         Alamofire

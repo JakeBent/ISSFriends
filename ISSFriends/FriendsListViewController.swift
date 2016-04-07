@@ -40,11 +40,11 @@ class FriendsListViewController: UIViewController {
         }
 
         // Bind view models to table view with reactive framework
-        viewModel.viewModels.lift().bindTo(tableView, proxyDataSource: self) { (indexPath, friends, tableView) -> UITableViewCell in
-            let friend = friends[indexPath.section][indexPath.row]
+        viewModel.viewModels.lift().bindTo(tableView, proxyDataSource: self) { (indexPath, viewModels, tableView) -> UITableViewCell in
+            let viewModel = viewModels[indexPath.section][indexPath.row]
             let cell: FriendInfoTableViewCell = tableView.dequeueCellClass(FriendInfoTableViewCell)
             cell.tableView = tableView
-            cell.configure(friend)
+            cell.configure(viewModel)
             return cell
         }
 
