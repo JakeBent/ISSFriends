@@ -75,7 +75,14 @@ class MapViewController: UIViewController {
 
         viewFriendsPassTimesButton.bnd_tap.observe { [weak self] () in
             guard let sself = self else { return }
-            let controller = FriendsListViewController(friends: sself.viewModel.friends.array)
+            let friends = [Friend(name: "dude", coordinate: CLLocationCoordinate2D(latitude: 45.0, longitude: 45.0)),
+                Friend(name: "guy", coordinate: CLLocationCoordinate2D(latitude: 43.0, longitude: 41.0)),
+                Friend(name: "girl", coordinate: CLLocationCoordinate2D(latitude: 45.0, longitude: 42.0)),
+                Friend(name: "thing", coordinate: CLLocationCoordinate2D(latitude: 45.0, longitude: 46.0)),
+                Friend(name: "lady", coordinate: CLLocationCoordinate2D(latitude: 45.0, longitude: 54.0)),
+                Friend(name: "it", coordinate: CLLocationCoordinate2D(latitude: 45.0, longitude: 55.0)),
+                Friend(name: "stuff", coordinate: CLLocationCoordinate2D(latitude: 45.0, longitude: 58.0))]
+            let controller = FriendsListViewController(friends: sself.viewModel.friends.array + friends)
             self?.presentViewController(UINavigationController(rootViewController: controller), animated: true, completion: nil)
         }
 

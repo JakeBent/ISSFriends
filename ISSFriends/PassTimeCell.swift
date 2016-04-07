@@ -30,7 +30,7 @@ class PassTimeCell: UIView {
         addSubview(infoLabel)
 
         iconView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(snp_left).offset(12)
+            make.left.equalTo(snp_left).offset(64)
             make.centerY.equalTo(snp_centerY)
             make.height.equalTo(32)
             make.width.equalTo(iconView.snp_height)

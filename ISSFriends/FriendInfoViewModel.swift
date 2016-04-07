@@ -20,6 +20,20 @@ class FriendInfoViewModel: NSObject {
         self.friend = friend
     }
 
+    func requestPassTimes(completion: ([String]?) -> Void) {
+        NetworkService.sharedService.getPassTimes(lat: friend.coordinate.latitude, long: friend.coordinate.longitude) { (response) -> Void in
+            guard let
+                value = response.result.value as? [String: AnyObject],
+                result = value["response"] as? [[String: NSTimeInterval]]
+                else { completion(nil); return }
+
+            completion(result.flatMap({ (timeDict) -> String in
+                guard let interval = timeDict["risetime"] else { return "" }
+                return Utility.stringFromTimeInterval(interval)
+            }))
+        }
+    }
+
     func height() -> CGFloat {
         if isExpanded {
             return FriendInfoViewModel.CELL_HEIGHT + (FriendInfoViewModel.CELL_HEIGHT * 3) + 8
