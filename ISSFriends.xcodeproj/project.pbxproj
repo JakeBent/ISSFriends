@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		4B0554CD2EEB8FFD3360EFC0 /* Pods_ISSFriendsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 622A3B6C72B299EEBAE6A5AE /* Pods_ISSFriendsTests.framework */; };
 		D4828A04DDE30035DED69566 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA49A0B48D28BD77669828D1 /* Pods.framework */; };
+		FA775E891CB6D0E6002BF6FD /* UtilitySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA775E881CB6D0E6002BF6FD /* UtilitySpec.swift */; };
+		FA775E8B1CB6D20E002BF6FD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA775E8A1CB6D20E002BF6FD /* Extensions.swift */; };
+		FA775E8D1CB6D24F002BF6FD /* FriendInfoViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA775E8C1CB6D24E002BF6FD /* FriendInfoViewModelSpec.swift */; };
+		FA775E8F1CB6D416002BF6FD /* MapViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA775E8E1CB6D416002BF6FD /* MapViewModelSpec.swift */; };
 		FADC8E561CB6876100E6E986 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E551CB6876100E6E986 /* AppDelegate.swift */; };
 		FADC8E581CB6876100E6E986 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E571CB6876100E6E986 /* MapViewController.swift */; };
 		FADC8E5D1CB6876100E6E986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADC8E5C1CB6876100E6E986 /* Assets.xcassets */; };
 		FADC8E601CB6876100E6E986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADC8E5E1CB6876100E6E986 /* LaunchScreen.storyboard */; };
-		FADC8E6B1CB6876100E6E986 /* ISSFriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E6A1CB6876100E6E986 /* ISSFriendsTests.swift */; };
+		FADC8E6B1CB6876100E6E986 /* AppDelegateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E6A1CB6876100E6E986 /* AppDelegateSpec.swift */; };
 		FADC8E781CB68BAC00E6E986 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E771CB68BAC00E6E986 /* NetworkService.swift */; };
-		FADC8E7B1CB68DD800E6E986 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E7A1CB68DD800E6E986 /* Extensions.swift */; };
 		FADC8E7D1CB68DF900E6E986 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E7C1CB68DF900E6E986 /* Utility.swift */; };
 		FADC8E7F1CB6904400E6E986 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E7E1CB6904400E6E986 /* MapViewModel.swift */; };
 		FADC8E821CB6961100E6E986 /* Satellite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADC8E811CB6961100E6E986 /* Satellite.swift */; };
@@ -46,6 +49,10 @@
 		6FFC2AEA3E784AE00D87A4AB /* Pods-ISSFriendsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISSFriendsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISSFriendsTests/Pods-ISSFriendsTests.release.xcconfig"; sourceTree = "<group>"; };
 		9C8DBDEF048FF069F9CECE50 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA49A0B48D28BD77669828D1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA775E881CB6D0E6002BF6FD /* UtilitySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitySpec.swift; sourceTree = "<group>"; };
+		FA775E8A1CB6D20E002BF6FD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FA775E8C1CB6D24E002BF6FD /* FriendInfoViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoViewModelSpec.swift; sourceTree = "<group>"; };
+		FA775E8E1CB6D416002BF6FD /* MapViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModelSpec.swift; sourceTree = "<group>"; };
 		FADC8E521CB6876100E6E986 /* ISSFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISSFriends.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADC8E551CB6876100E6E986 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADC8E571CB6876100E6E986 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -53,10 +60,9 @@
 		FADC8E5F1CB6876100E6E986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FADC8E611CB6876100E6E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADC8E661CB6876100E6E986 /* ISSFriendsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISSFriendsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FADC8E6A1CB6876100E6E986 /* ISSFriendsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISSFriendsTests.swift; sourceTree = "<group>"; };
+		FADC8E6A1CB6876100E6E986 /* AppDelegateSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateSpec.swift; sourceTree = "<group>"; };
 		FADC8E6C1CB6876100E6E986 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADC8E771CB68BAC00E6E986 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		FADC8E7A1CB68DD800E6E986 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FADC8E7C1CB68DF900E6E986 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		FADC8E7E1CB6904400E6E986 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FADC8E811CB6961100E6E986 /* Satellite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Satellite.swift; sourceTree = "<group>"; };
@@ -150,8 +156,11 @@
 		FADC8E691CB6876100E6E986 /* ISSFriendsTests */ = {
 			isa = PBXGroup;
 			children = (
-				FADC8E6A1CB6876100E6E986 /* ISSFriendsTests.swift */,
+				FADC8E6A1CB6876100E6E986 /* AppDelegateSpec.swift */,
+				FA775E881CB6D0E6002BF6FD /* UtilitySpec.swift */,
+				FA775E8C1CB6D24E002BF6FD /* FriendInfoViewModelSpec.swift */,
 				FADC8E6C1CB6876100E6E986 /* Info.plist */,
+				FA775E8E1CB6D416002BF6FD /* MapViewModelSpec.swift */,
 			);
 			path = ISSFriendsTests;
 			sourceTree = "<group>";
@@ -176,8 +185,8 @@
 		FADC8E791CB68DCB00E6E986 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				FADC8E7A1CB68DD800E6E986 /* Extensions.swift */,
 				FADC8E7C1CB68DF900E6E986 /* Utility.swift */,
+				FA775E8A1CB6D20E002BF6FD /* Extensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -421,11 +430,11 @@
 				FADC8E881CB6ABF400E6E986 /* FriendsListViewController.swift in Sources */,
 				FADC8E921CB6B26300E6E986 /* PassTimeCell.swift in Sources */,
 				FADC8E901CB6B23F00E6E986 /* FriendInfoExpandedView.swift in Sources */,
-				FADC8E7B1CB68DD800E6E986 /* Extensions.swift in Sources */,
 				FADC8E7F1CB6904400E6E986 /* MapViewModel.swift in Sources */,
 				FADC8E821CB6961100E6E986 /* Satellite.swift in Sources */,
 				FADC8E841CB69D0200E6E986 /* Friend.swift in Sources */,
 				FADC8E8C1CB6ADFE00E6E986 /* FriendInfoViewModel.swift in Sources */,
+				FA775E8B1CB6D20E002BF6FD /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +442,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADC8E6B1CB6876100E6E986 /* ISSFriendsTests.swift in Sources */,
+				FADC8E6B1CB6876100E6E986 /* AppDelegateSpec.swift in Sources */,
+				FA775E891CB6D0E6002BF6FD /* UtilitySpec.swift in Sources */,
+				FA775E8F1CB6D416002BF6FD /* MapViewModelSpec.swift in Sources */,
+				FA775E8D1CB6D24F002BF6FD /* FriendInfoViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
