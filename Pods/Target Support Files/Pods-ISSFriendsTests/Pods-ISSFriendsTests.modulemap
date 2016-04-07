@@ -1,6 +1,0 @@
-framework module Pods_ISSFriendsTests {
-  umbrella header "Pods-ISSFriendsTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
