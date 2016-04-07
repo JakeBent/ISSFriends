@@ -15,3 +15,13 @@
 6. Run the tests: `Cmd + u`
 
 If there are any issues installing, please check that you are running the same versions of xcode and cocoapods.
+
+Long press (~1 second) on a location in the map to add a friend.
+
+Tap the clock in the bottom left to see a list of added friends. You can tap on a friend's name to find out the next three times the ISS will pass them. Friends are currently not being stored between sessions.
+
+Tap the Satellite dish in the bottom right to center the map on the current location of the ISS
+
+The bottom of the map view will display the next time the ISS will pass over the user's current location
+
+The unit tests are very basic, just displaying a conditional case, a mock network service and a couple utility method checks.
