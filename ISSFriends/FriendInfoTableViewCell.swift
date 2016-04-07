@@ -34,6 +34,11 @@ class FriendInfoTableViewCell: UITableViewCell {
         button.setImage(UIImage(named: "expand_arrow"), forState: .Normal)
         return button
     }()
+    let divider: UIView = {
+        let view = UIView()
+        view.backgroundColor = .grayColor()
+        return view
+    }()
     weak var tableView: UITableView?
     var viewModel: FriendInfoViewModel?
     var expandedView: FriendInfoExpandedView?
@@ -43,6 +48,7 @@ class FriendInfoTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         contentView.addSubview(background)
+        contentView.addSubview(divider)
         background.addSubview(titleLabel)
         background.addSubview(expandArrow)
         background.addSubview(spinner)
@@ -52,6 +58,12 @@ class FriendInfoTableViewCell: UITableViewCell {
             make.right.equalTo(contentView.snp_right)
             make.top.equalTo(contentView.snp_top)
             make.height.equalTo(FriendInfoTableViewCell.CELL_HEIGHT)
+        }
+        divider.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(contentView.snp_left)
+            make.right.equalTo(contentView.snp_right)
+            make.bottom.equalTo(contentView.snp_bottom)
+            make.height.equalTo(1)
         }
         titleLabel.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(background.snp_left).offset(12)
