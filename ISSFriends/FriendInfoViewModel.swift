@@ -8,7 +8,7 @@
 
 import UIKit
 
-// View Model for individual friend cells. It holds the Friend model, keeps track of whether the cell is expanded, and calculates the height for the cell.
+// View Model for individual friend cells. It's responsible for making the network requests to the open-notify server to get the three next pass times for the associated friend. It also holds the Friend model, keeps track of whether the cell is expanded, and calculates the height for the cell.
 class FriendInfoViewModel: NSObject {
 
     static let CELL_HEIGHT: CGFloat = 40

@@ -14,6 +14,7 @@ import Bond
 
 // This is a table view cell displayed in the FriendsListViewController. It shows the name when collapsed and shows the name plus the next 3 pass times when expanded
 class FriendInfoTableViewCell: UITableViewCell {
+
     static let CELL_HEIGHT: CGFloat = 40
 
     let background = UIView()
@@ -97,7 +98,6 @@ class FriendInfoTableViewCell: UITableViewCell {
 
     // Call out to open-notify to retrieve pass times, then expand the cell when the data is returned
     func expandCell() {
-
         spinner.startAnimating()
         viewModel?.requestPassTimes { [weak self] (times) in
             self?.spinner.stopAnimating()
