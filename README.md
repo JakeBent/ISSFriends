@@ -2,7 +2,7 @@
 
 **Installation**:
 
-1. Install xcode (this was built in Version 7.2 (7C68))
+1. Install xcode (this was built in Version 7.2 (7C68) with Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81))
 
 2. Install cocoapods: `gem install cocoapods -v 0.39.0`
 
